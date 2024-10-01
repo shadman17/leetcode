@@ -8,6 +8,9 @@ class Solution:
         x = new_strs[0]
         y = new_strs[len(strs) - 1]
 
+
+        print(x, y)
+
         min_len = min(len(x), len(y))
 
         char = ""
