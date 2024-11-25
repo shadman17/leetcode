@@ -7,10 +7,12 @@ class ListNode:
 
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+
         dummy = ListNode()
         current = dummy
 
         while list1 and list2:
+
             if list1.val < list2.val:
                 current.next = list1
                 list1 = list1.next
@@ -20,35 +22,35 @@ class Solution:
                 list2 = list2.next
 
             current = current.next
-
-        if list1:
-            current.next = list1
-        elif list2:
-            current.next = list2
+        
+        current.next = list1 if list1 else list2
 
         return dummy.next
     
-def create_linked_list(lst):
-    dummy = ListNode()
-    current = dummy
 
-    for value in lst:
+def toLinkedList(lst):
+    if not lst:
+        return None
+    head = ListNode(lst[0])
+    current = head
+
+    for value in lst[1:]:
         current.next = ListNode(value)
         current = current.next
+    return head
 
-    return dummy.next
 
-def print_linked_list(node):
-    values = []
+def toList(head):
+    result = []
+    while head:
+        result.append(head.val)
+        head = head.next
+    
+    return result
 
-    while node:
-        values.append(node.val)
-        node = node.next
-
-    print(values)
-
-list1 = create_linked_list([1, 2, 4])
-list2 = create_linked_list([1, 3, 4])
-solution = Solution()
-merged_list = solution.mergeTwoLists(list1, list2)
-print_linked_list(merged_list)
+s = Solution()
+linkedlist1 = toLinkedList([1,2,4])
+linkedlist2 = toLinkedList([1,3,4])
+mergedlist = s.mergeTwoLists(linkedlist1, linkedlist2)
+output = toList(mergedlist)
+print(output)
