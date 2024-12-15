@@ -1,28 +1,28 @@
 from typing import List
 
 
-class Solution:
-    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+# class Solution:
+#     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
 
-        ans = []
-        for char in nums1:
-            if char in nums2:
+#         ans = []
+#         for char in nums1:
+#             if char in nums2:
 
-                i = nums2.index(char)
+#                 i = nums2.index(char)
 
-                j = i + 1
-                added = False
-                while j < len(nums2):
-                    if nums2[j] > nums2[i]:
-                        ans.append(nums2[j])
-                        added = True
-                        break
-                    j += 1
+#                 j = i + 1
+#                 added = False
+#                 while j < len(nums2):
+#                     if nums2[j] > nums2[i]:
+#                         ans.append(nums2[j])
+#                         added = True
+#                         break
+#                     j += 1
 
-                if not added:
-                    ans.append(-1)
+#                 if not added:
+#                     ans.append(-1)
 
-        return ans
+#         return ans
 
 # class Solution:
 #     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
@@ -46,24 +46,24 @@ class Solution:
 
         # return result
 
-# class Solution:
-#     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        # nums1_id = {n:i for i, n in enumerate(nums1)}
-        # result = [-1] * len(nums1)
-        # stack = []
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1_id = {n:i for i, n in enumerate(nums1)}
+        result = [-1] * len(nums1)
+        stack = []
 
-        # length = len(nums2)
-        # for i in range(length):
-        #     cur = nums2[i]
-        #     while stack and cur > stack[-1]:
-        #         val = stack.pop()
-        #         idx = nums1_id[val]
-        #         result[idx] = cur
+        length = len(nums2)
+        for i in range(length):
+            cur = nums2[i]
+            while stack and cur > stack[-1]:
+                val = stack.pop()
+                idx = nums1_id[val]
+                result[idx] = cur
 
-        #     if cur in nums1_id:
-        #         stack.append(cur)
+            if cur in nums1_id:
+                stack.append(cur)
 
-        # return result
+        return result
 
 s = Solution()
 
