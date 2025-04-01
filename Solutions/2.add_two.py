@@ -38,7 +38,7 @@ class Solution:
             current = current.next
 
         return head
-    
+
 def toLinkedList(lst):
     if not lst:
         return None
@@ -56,7 +56,7 @@ def toList(head):
     while head:
         result.append(head.val)
         head = head.next
-    
+
     return result
 
 
@@ -64,4 +64,5 @@ def toList(head):
 l1 = toLinkedList([2,4,3])
 l2 = toLinkedList([5,6,4])
 s = Solution()
-print(s.addTwoNumbers(l1, l2))
+x = s.addTwoNumbers(l1, l2)
+print(toList(x))
