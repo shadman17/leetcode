@@ -16,6 +16,20 @@ class Solution:
                 nums[m], nums[h] = nums[h], nums[m]
                 h -= 1
 
+# class Solution:
+#     def sortColors(self, nums: List[int]) -> None:
+#         """
+#         Do not return anything, modify nums in-place instead.
+#         """
+#         counts = [0,0,0]
+#         for i in range(len(nums)):
+#             counts[nums[i]] += 1
+
+#         m = 0
+#         for i in range(3):
+#             for j in range(counts[i]):
+#                 nums[m] = i
+#                 m+=1
 
 # class Solution(object):
 #     def sortColors(self, nums):

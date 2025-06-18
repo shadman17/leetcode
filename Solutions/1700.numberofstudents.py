@@ -5,7 +5,7 @@ from typing import List
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
         cnt = Counter(students)
-
+        print(cnt)
         for sandwich in sandwiches:
             if cnt[sandwich] > 0:
                 cnt[sandwich] -= 1
