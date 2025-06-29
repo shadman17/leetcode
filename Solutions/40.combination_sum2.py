@@ -1,5 +1,28 @@
 from typing import List
 
+# class Solution:
+#     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+#         res = []
+#         candidates.sort()
+
+#         def dfs(index, target, arr):
+#             if target == 0:
+#                 res.append(arr[:])
+#                 return
+
+#             for i in range(index, len(candidates)):
+#                 if i > index and candidates[i] == candidates[i-1]:
+#                     continue
+
+#                 if candidates[i] > target:
+#                     break
+
+#                 arr.append(candidates[i])
+#                 dfs(i+1, target - candidates[i], arr)
+#                 arr.pop()
+
+#         dfs(0, target, [])
+#         return res
 
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
