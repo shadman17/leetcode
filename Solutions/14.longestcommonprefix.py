@@ -8,18 +8,15 @@ class Solution:
         x = new_strs[0]
         y = new_strs[len(strs) - 1]
 
-
-        print(x, y)
-
         min_len = min(len(x), len(y))
 
-        char = ""
+        chars = ""
         for i in range(min_len):
             if x[i] != y[i]:
-                return char
-            char += x[i]
+                return chars
+            chars += x[i]
 
-        return char
+        return chars
 
 
 s = Solution()

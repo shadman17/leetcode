@@ -1,40 +1,42 @@
+class Solution(object):
+	def isValid(self, s):
+        d = {'(':')', '{':'}','[':']'}
+        stack = []
+        for i in s:
+            if i in d:  # 1
+                stack.append(i)
+            elif len(stack) == 0 or d[stack.pop()] != i:  # 2
+                return False
+        return len(stack) == 0 # 3
+
 class Solution:
     def isValid(self, s: str) -> bool:
+
+        opens = ["(", "{", "["]
+        closes = [")", "}", "]"]
+
         newlist = []
-        index = 0
-        balanced = True
-        while index < len(s) and balanced:
-            top = ""
-            symbol = s[index]
-            if symbol in "({[":
-                self.push(newlist, symbol)
+
+        for i in range(len(s)):
+            symbol = s[i]
+
+            if symbol in opens:
+                newlist.insert(0, symbol)
+
             else:
-                if self.isempty(newlist):
-                    balanced = False
+                if newlist == []:
+                    return False
 
-                else:
-                    top = self.pop(newlist)
+                top = newlist.pop(0)
 
-                if not self.matches(top, symbol):
-                    balanced = False
-            index = index + 1
+                if closes.index(symbol) != opens.index(top):
+                    return False
 
-        if balanced and self.isempty(newlist):
+        if newlist == []:
             return True
         else:
             return False
 
-    def push(self, newlist, char):
-        newlist.insert(0, char)
 
-    def pop(self, newlist):
-        return newlist.pop(0)
-
-    def isempty(self, newlist):
-        return newlist == []
-
-    def matches(self, open, close):
-        opens = "({["
-        closes = ")}]"
-
-        return opens.index(open) == closes.index(close)
+s = Solution()
+print(s.isValid("(){}]"))
