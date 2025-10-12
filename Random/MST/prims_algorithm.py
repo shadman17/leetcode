@@ -1,32 +1,33 @@
 import heapq
-class Solution:
-    def spanningTree(self, V, edges):
-        # code here
-        
-        adj = [[] for _ in range(V)]
-        
-        for i in range(len(edges)):
-            u, v, wt = edges[i]
-            adj[u].append((v, wt))
-            adj[v].append((u, wt))
-        
-        res = 0
-        minheap = []
-        heapq.heappush(minheap,(0, 0))
-        visited = [False] * V
-        
-        while minheap:
-            w, u = heapq.heappop(minheap)
-            
-            if visited[u]:
-                continue
-            
-            visited[u] = True
-            
-            res += w
-            
-            for nei, weight in adj[u]:
-                if not visited[nei]:
-                    heapq.heappush(minheap, (weight, nei))
-                    
-        return res
+
+# Given a list of edges of a connected undirected graph,
+# with nodes numbered from 1 to n,
+# return a list edges making up the minimum spanning tree.
+def minimumSpanningTree(edges, n):
+    adj = {}
+    for i in range(1, n + 1):
+        adj[i] = []
+    for n1, n2, weight in edges:
+        adj[n1].append([n2, weight])
+        adj[n2].append([n1, weight])
+
+    # Initialize the heap by choosing a single node
+    # (in this case 1) and pushing all its neighbors.
+    minHeap = []
+    for neighbor, weight in adj[1]:
+        heapq.heappush(minHeap, [weight, 1, neighbor])
+
+    mst = []
+    visit = set()
+    visit.add(1)
+    while len(visit) < n:
+        weight, n1, n2 = heapq.heappop(minHeap)
+        if n2 in visit:
+            continue
+
+        mst.append([n1, n2])
+        visit.add(n2)
+        for neighbor, weight in adj[n2]:
+            if neighbor not in visit:
+                heapq.heappush(minHeap, [weight, n2, neighbor])
+    return mst
