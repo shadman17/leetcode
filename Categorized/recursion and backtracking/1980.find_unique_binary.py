@@ -1,7 +1,6 @@
 class Solution:
     def findDifferentBinaryString(self, nums: List[str]) -> str:
         n = len(nums[0])
-        print(n)
 
         def backtrack(arr):
             new_string = ""
