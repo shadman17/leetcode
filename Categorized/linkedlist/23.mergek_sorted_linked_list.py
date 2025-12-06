@@ -8,25 +8,25 @@ class ListNode:
         self.next = next
 
 
-class Solution:
-    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        nodes = []
+# class Solution:
+#     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+#         nodes = []
 
-        for lst in lists:
-            while lst:
-                nodes.append(lst.val)
-                lst = lst.next
+#         for lst in lists:
+#             while lst:
+#                 nodes.append(lst.val)
+#                 lst = lst.next
 
-        nodes.sort()
+#         nodes.sort()
 
-        dummy = ListNode()
-        temp = dummy
+#         dummy = ListNode()
+#         temp = dummy
 
-        for node in nodes:
-            temp.next = ListNode(node)
-            temp = temp.next
+#         for node in nodes:
+#             temp.next = ListNode(node)
+#             temp = temp.next
 
-        return dummy.next
+#         return dummy.next
 
 
 class Solution:
@@ -56,3 +56,27 @@ class Solution:
         temp.next = list1 if list1 else list2
 
         return dummy.next
+
+
+# import heapq
+# class Solution:
+#     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+#         min_heap = []
+
+#         for i in range(len(lists)):
+#             if lists[i] is not None:
+#                 heapq.heappush(min_heap, (lists[i].val, i, lists[i]))
+        
+
+#         dummy = ListNode(-1)
+#         tail = dummy
+
+#         while min_heap:
+#             val, i, node = heapq.heappop(min_heap)
+#             tail.next = node
+#             tail = tail.next
+
+#             if node.next:
+#                 heapq.heappush(min_heap, (node.next.val, i, node.next))
+
+#         return dummy.next
