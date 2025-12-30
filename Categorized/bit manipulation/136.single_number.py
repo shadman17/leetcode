@@ -8,7 +8,6 @@ class Solution:
 
         for num in nums:
             total ^= num
-            print(total)
 
         return total
 
