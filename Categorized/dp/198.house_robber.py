@@ -1,65 +1,107 @@
 # Memoization
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        dp = [-1] * (len(nums) + 1)
+        n = len(nums)
+        dp = [-1] * n
 
-        def func(ind):
+        def recursion(ind):
             if ind == 0:
                 return nums[ind]
-
-            if dp[ind] != -1:
-                return dp[ind]
 
             if ind < 0:
                 return 0
 
-            left = nums[ind] + func(ind - 2)
-            right = func(ind - 1)
+            if dp[ind] != -1:
+                return dp[ind]
 
-            dp[ind] = max(left, right)
+            pick = nums[ind] + recursion(ind - 2)
+            not_pick = recursion(ind - 1)
+
+            dp[ind] = max(pick, not_pick)
+
             return dp[ind]
 
-        return func(len(nums) - 1)
+        return recursion(n - 1)
 
 
-# DP Bottom up
+# Tabulation
+
+
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if not nums:
-            return 0
+        n = len(nums)
+        dp = [-1] * n
 
-        if len(nums) == 1:
-            return nums[0]
-
-        dp = [0] * (len(nums))
         dp[0] = nums[0]
-        dp[1] = max(nums[0], nums[1])
 
-        for i in range(2, len(nums)):
-            left = nums[i] + dp[i - 2]
-            right = dp[i - 1]
-            dp[i] = max(left, right)
+        for ind in range(1, n):
+            pick = nums[ind]
+            if ind > 1:
+                pick += dp[ind - 2]
+            not_pick = dp[ind - 1]
 
-        return dp[-1]
+            dp[ind] = max(pick, not_pick)
+
+        return dp[n - 1]
+
+
+# class Solution:
+#     def rob(self, nums: List[int]) -> int:
+#         if not nums:
+#             return 0
+
+#         if len(nums) == 1:
+#             return nums[0]
+
+#         dp = [0] * (len(nums))
+#         dp[0] = nums[0]
+#         dp[1] = max(nums[0], nums[1])
+
+#         for i in range(2, len(nums)):
+#             left = nums[i] + dp[i - 2]
+#             right = dp[i - 1]
+#             dp[i] = max(left, right)
+
+#         return dp[-1]
 
 
 # Space Optimized DP
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        if not nums:
-            return 0
+        n = len(nums)
 
-        if len(nums) == 1:
-            return nums[0]
+        prev2 = 0
+        prev = nums[0]
 
-        prev2 = nums[0]
-        prev = max(nums[0], nums[1])
+        for ind in range(1, n):
+            pick = nums[ind]
+            if ind > 1:
+                pick += prev2
+            not_pick = prev
 
-        for i in range(2, len(nums)):
-            left = nums[i] + prev2
-            right = prev
-            cur = max(left, right)
+            cur = max(pick, not_pick)
             prev2 = prev
             prev = cur
 
         return prev
+
+
+# class Solution:
+#     def rob(self, nums: List[int]) -> int:
+#         if not nums:
+#             return 0
+
+#         if len(nums) == 1:
+#             return nums[0]
+
+#         prev2 = nums[0]
+#         prev = max(nums[0], nums[1])
+
+#         for i in range(2, len(nums)):
+#             left = nums[i] + prev2
+#             right = prev
+#             cur = max(left, right)
+#             prev2 = prev
+#             prev = cur
+
+#         return prev
