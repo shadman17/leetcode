@@ -2,4 +2,4 @@
 2. For unbounded knapsack, I should calculate from target to 0, if I want it to further optimized to 1D array
 
 problems to check again:
-Check DP 16, 34 again in striver DSA
+Check DP 16, 34, 47 again in striver DSA
