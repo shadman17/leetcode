@@ -8,6 +8,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 def build_tree(values):
     if not values:
         return None
